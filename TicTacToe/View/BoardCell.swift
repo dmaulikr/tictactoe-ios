@@ -9,5 +9,6 @@
 import UIKit
 
 class BoardCell: UICollectionViewCell {
-    
+ 
+    @IBOutlet weak var imageView: UIImageView?
 }

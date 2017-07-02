@@ -18,8 +18,8 @@ protocol ReusableView: class {
 
 extension ReusableView where Self: UIView {
     static var defaultReuseIdentifier: String {
-        // FIXME: - Reveja o unwraping
-        return NSStringFromClass(self).components(separatedBy: ".").last!
+        let className = NSStringFromClass(self)
+        return className.components(separatedBy: ".").last ?? className
     }
 }
 
