@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		031EAC151F099A4500735301 /* BoardPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EAC141F099A4500735301 /* BoardPoint.swift */; };
+		031EAC171F099A6800735301 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EAC161F099A6800735301 /* Board.swift */; };
 		0323BCA91F09274300013EB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323BCA81F09274300013EB0 /* AppDelegate.swift */; };
 		0323BCAB1F09274300013EB0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323BCAA1F09274300013EB0 /* GameViewController.swift */; };
 		0323BCAE1F09274300013EB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0323BCAC1F09274300013EB0 /* Main.storyboard */; };
@@ -15,9 +17,10 @@
 		0323BCBE1F09274300013EB0 /* TicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323BCBD1F09274300013EB0 /* TicTacToeTests.swift */; };
 		0323BCC91F09274300013EB0 /* TicTacToeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323BCC81F09274300013EB0 /* TicTacToeUITests.swift */; };
 		0323BCDA1F09331800013EB0 /* BoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323BCD91F09331800013EB0 /* BoardCell.swift */; };
-		0323BCDD1F0933AD00013EB0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323BCDC1F0933AD00013EB0 /* Protocols.swift */; };
 		0323BCE11F093B5200013EB0 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323BCDF1F093B5200013EB0 /* GameManager.swift */; };
 		0323BCE21F093B5200013EB0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323BCE01F093B5200013EB0 /* Player.swift */; };
+		03771E291F09A32E00E46588 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03771E271F09A32E00E46588 /* Extensions.swift */; };
+		03771E2A1F09A32E00E46588 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03771E281F09A32E00E46588 /* Protocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		031EAC141F099A4500735301 /* BoardPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardPoint.swift; sourceTree = "<group>"; };
+		031EAC161F099A6800735301 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		0323BCA51F09274300013EB0 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0323BCA81F09274300013EB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0323BCAA1F09274300013EB0 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -52,9 +57,10 @@
 		0323BCC81F09274300013EB0 /* TicTacToeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeUITests.swift; sourceTree = "<group>"; };
 		0323BCCA1F09274300013EB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0323BCD91F09331800013EB0 /* BoardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardCell.swift; sourceTree = "<group>"; };
-		0323BCDC1F0933AD00013EB0 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		0323BCDF1F093B5200013EB0 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		0323BCE01F093B5200013EB0 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		03771E271F09A32E00E46588 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		03771E281F09A32E00E46588 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +114,7 @@
 				0323BCA81F09274300013EB0 /* AppDelegate.swift */,
 				0323BCAA1F09274300013EB0 /* GameViewController.swift */,
 				0323BCDE1F093B0F00013EB0 /* Game */,
-				0323BCDB1F09332F00013EB0 /* Protocols */,
+				03771E261F09A32E00E46588 /* Utils */,
 				0323BCD61F0932CA00013EB0 /* View */,
 				0323BCAC1F09274300013EB0 /* Main.storyboard */,
 				0323BCAF1F09274300013EB0 /* Assets.xcassets */,
@@ -144,21 +150,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		0323BCDB1F09332F00013EB0 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				0323BCDC1F0933AD00013EB0 /* Protocols.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		0323BCDE1F093B0F00013EB0 /* Game */ = {
 			isa = PBXGroup;
 			children = (
 				0323BCDF1F093B5200013EB0 /* GameManager.swift */,
 				0323BCE01F093B5200013EB0 /* Player.swift */,
+				031EAC141F099A4500735301 /* BoardPoint.swift */,
+				031EAC161F099A6800735301 /* Board.swift */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		03771E261F09A32E00E46588 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				03771E271F09A32E00E46588 /* Extensions.swift */,
+				03771E281F09A32E00E46588 /* Protocols.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,11 +307,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				031EAC151F099A4500735301 /* BoardPoint.swift in Sources */,
 				0323BCAB1F09274300013EB0 /* GameViewController.swift in Sources */,
 				0323BCDA1F09331800013EB0 /* BoardCell.swift in Sources */,
+				03771E2A1F09A32E00E46588 /* Protocols.swift in Sources */,
+				03771E291F09A32E00E46588 /* Extensions.swift in Sources */,
 				0323BCA91F09274300013EB0 /* AppDelegate.swift in Sources */,
-				0323BCDD1F0933AD00013EB0 /* Protocols.swift in Sources */,
 				0323BCE21F093B5200013EB0 /* Player.swift in Sources */,
+				031EAC171F099A6800735301 /* Board.swift in Sources */,
 				0323BCE11F093B5200013EB0 /* GameManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,6 +568,7 @@
 				0323BCCF1F09274300013EB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0323BCD01F09274300013EB0 /* Build configuration list for PBXNativeTarget "TicTacToeTests" */ = {
 			isa = XCConfigurationList;
@@ -564,6 +577,7 @@
 				0323BCD21F09274300013EB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0323BCD31F09274300013EB0 /* Build configuration list for PBXNativeTarget "TicTacToeUITests" */ = {
 			isa = XCConfigurationList;
@@ -572,6 +586,7 @@
 				0323BCD51F09274300013EB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

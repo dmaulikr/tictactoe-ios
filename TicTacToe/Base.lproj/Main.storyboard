@@ -116,7 +116,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Tic Tac Toe" id="NHf-R3-Zlo">
-                        <barButtonItem key="rightBarButtonItem" title="New Game" id="Pbm-q0-dYJ"/>
+                        <barButtonItem key="rightBarButtonItem" title="New Game" id="Pbm-q0-dYJ">
+                            <connections>
+                                <action selector="resetGame" destination="BYZ-38-t0r" id="YHx-US-lf3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="tuG-4M-v4d" id="9O9-xI-aSl"/>

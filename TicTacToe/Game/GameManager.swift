@@ -6,29 +6,17 @@
 //  Copyright © 2017 Romilson Nunes. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-/* Board
- 
- [1]-[2]-[3]
- [1]-[2]-[3]
- [1]-[2]-[3]
- 
- (1)-(1)-(1)
- (2)-(2)-(2)
- (3)-(3)-(3)
- 
- Win:
- 1) Line completed
- 2) Collum completed
- 3) Diagnal completed
- 
- */
+// MARK: - Enum
 
 enum GameResult {
     case tie // empate
     case victory(Player)
 }
+
+
+// MARK: - Protocols
 
 protocol GameManagerDelegate: class {
     func gameReseted(manager: GameManager)
@@ -36,18 +24,28 @@ protocol GameManagerDelegate: class {
     func gameManager(_ manager: GameManager, didSelected point: BoardPoint, from player: Player)
 }
 
+
+// MARK: - Class Manager
+
 class GameManager {
     
     weak var delegate: GameManagerDelegate?
 
     private(set) var lastPlayer: Player?
     
-    private(set) var board = GameBoard()
+    private(set) var board = Board()
     
+    
+    // MARK: - Public
     
     func reset() {
-        self.board = GameBoard()
+        self.board = Board()
+        self.lastPlayer = nil
         self.delegate?.gameReseted(manager: self)
+    }
+    
+    func player(at point: BoardPoint) -> Player? {
+        return board[point]
     }
     
     func canSelect(point: BoardPoint, from player: Player) -> Bool {
@@ -74,12 +72,11 @@ class GameManager {
         // 2.) Verificar fim do jogo (board full)
         if board.isFull() {
             self.delegate?.gameManager(self, finishedWith: .tie)
-            return
         }
     }
     
     
-    // MARK: - Check Victory
+    // MARK: - Check State
     
     private func checkVictory(from player: Player) -> Bool {
         return anyColumnCompleted(from: player) || anyRowCompleted(from: player) || anyDiagonalCompleted(from: player)
@@ -94,7 +91,7 @@ class GameManager {
                     sum += 1
                 }
             }
-            if sum == 3 {
+            if sum == Board.sideSize {
                 return true
             }
         }
@@ -110,7 +107,7 @@ class GameManager {
                     sum += 1
                 }
             }
-            if sum == 3 {
+            if sum == Board.sideSize {
                 return true
             }
         }
@@ -118,6 +115,7 @@ class GameManager {
     }
     
     private func anyDiagonalCompleted(from player: Player) -> Bool {
+        
         var diagonalTopBottom = 0
         var diagonalBottomTop = 0
         for column in board.columns {
@@ -148,101 +146,8 @@ class GameManager {
                 }
             }
         }
-        return (diagonalTopBottom == 3) || (diagonalBottomTop == 3)
+        return (diagonalTopBottom == Board.sideSize) || (diagonalBottomTop == Board.sideSize)
     }
 }
 
 
-struct GameBoard {
-    
-    let sideSize = 3
-    
-    // var numberOfItems: Int { return sideSize * sideSize }
-    
-    lazy var columns : [Int] = [0,1,2]
-    lazy var rows : [Int] = [0,1,2]
-    
-    private var data : [BoardPoint: Player] = [:]
-    
-    subscript(point: BoardPoint) -> Player? {
-        get {
-            return self.data[point]
-        }
-        set {
-            self.data[point] = newValue
-        }
-    }
-    
-    
-    // MARK: - Public
-    
-    mutating func isFull() -> Bool {
-        for column in columns {
-            for row in rows {
-                if canSelect(point: BoardPoint(column: column, row: row)) {
-                    return false
-                }
-            }
-        }
-        return true
-    }
-    
-    func canSelect(point: BoardPoint) -> Bool {
-        return self[point] == nil
-    }
-    
-    mutating func select(point: BoardPoint, from player: Player) {
-        if self.canSelect(point: point) {
-            self[point] = player
-        }
-    }
-}
-
-struct Player {
-    let identifier: String // 'X' or 'O'
-    let image: UIImage
-    
-    init(identifier: String, image: UIImage) {
-        self.identifier = identifier
-        self.image = image
-    }
-    
-    static func ==(lhs: Player, rhs: Player) -> Bool {
-        return lhs.identifier == rhs.identifier
-    }
-}
-
-
-struct BoardPoint: Hashable {
-    
-    let row: Int
-    let column: Int
-    
-    init(column: Int, row: Int) {
-        self.column = column
-        self.row = row
-    }
-    
-    var hashValue: Int {
-        return  "\(row)-\(column)".hashValue
-    }
-    
-    static func == (lhs: BoardPoint, rhs: BoardPoint) -> Bool {
-        return lhs.row == rhs.row && lhs.column == rhs.column
-    }
-}
-
-/*
-struct Piece {
-    let column: Int
-    let row: Int
-    
-    let identifier: String // 'x' or 'o'
-    
-    init(identifier: String, column: Int, row: Int) {
-        self.identifier = identifier
-        self.column = column
-        self.row = row
-    }
-}
-*/
