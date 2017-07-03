@@ -36,11 +36,18 @@ class GameManager {
     private(set) var board = Board()
     
     
+    // MARK: - Initializers
+    
+    convenience init(board: Board) {
+        self.init()
+        self.board = board
+    }
+    
     // MARK: - Public
     
     func reset() {
-        self.board = Board()
         self.lastPlayer = nil
+        self.board = Board()
         self.delegate?.gameReseted(manager: self)
     }
     
@@ -75,12 +82,12 @@ class GameManager {
         }
     }
     
-    
-    // MARK: - Check State
-    
-    private func checkVictory(from player: Player) -> Bool {
+    func checkVictory(from player: Player) -> Bool {
         return anyColumnCompleted(from: player) || anyRowCompleted(from: player) || anyDiagonalCompleted(from: player)
     }
+    
+    // MARK: - Check State
+
     
     private func anyColumnCompleted(from player: Player) -> Bool {
         for column in board.columns {

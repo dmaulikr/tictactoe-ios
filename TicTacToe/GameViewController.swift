@@ -11,6 +11,7 @@ import UIKit
 class GameBoardViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView?
+    @IBOutlet weak var activityView: UIActivityIndicatorView?
     
     var manager: GameManager = GameManager()
     
@@ -60,7 +61,20 @@ extension GameBoardViewController: GameManagerDelegate {
     }
     
     func gameManager(_ manager: GameManager, didSelected point: BoardPoint, from player: Player) {
-        self.collectionView?.reloadItems(at: [ IndexPath.make(from: point) ])
+        let items = [IndexPath.make(from: point)]
+        self.collectionView?.reloadItems(at: items)
+        
+        
+        var board = manager.board
+        if !board.isFull() && player != machine {
+            self.collectionView?.isUserInteractionEnabled = false
+            self.activityView?.startAnimating()
+            AIEnginer().predictNextPosition(forPlayer: player, inBoard: board, withOpponent: human, completion: { (point) in
+                self.collectionView?.isUserInteractionEnabled = true
+                self.activityView?.stopAnimating()
+                manager.select(point: point, from: self.machine)
+            })
+        }
     }
 }
 
@@ -89,12 +103,14 @@ extension GameBoardViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let point = BoardPoint.make(from: indexPath)
         
-        guard let lastPlayer = manager.lastPlayer else {
-            return manager.select(point: point, from: human)
-        }
+        // For Two Players
+//        guard let lastPlayer = manager.lastPlayer else {
+//            return manager.select(point: point, from: human)
+//        }
+//        let currentPlayer = lastPlayer == human ? machine : human
+//        manager.select(point: point, from: currentPlayer)
         
-        let currentPlayer = lastPlayer == human ? machine : human
-        manager.select(point: point, from: currentPlayer)
+        manager.select(point: point, from: human)
     }
 }
 

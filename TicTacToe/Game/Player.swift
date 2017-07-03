@@ -20,4 +20,10 @@ struct Player {
     static func ==(lhs: Player, rhs: Player) -> Bool {
         return lhs.identifier == rhs.identifier
     }
+    
+    static func !=(lhs: Player, rhs: Player) -> Bool {
+        return !(lhs == rhs)
+    }
+    
+    
 }

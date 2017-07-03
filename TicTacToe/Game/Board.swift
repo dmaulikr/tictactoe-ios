@@ -51,4 +51,17 @@ struct Board {
             self[point] = player
         }
     }
+    
+    mutating func emptyPoints() -> [BoardPoint] {
+        var points: [BoardPoint] = []
+        for row in rows {
+            for column in columns {
+                let point = BoardPoint(column: column, row: row)
+                if canSelect(point: point) {
+                    points.append(point)
+                }
+            }
+        }
+        return points
+    }
 }
