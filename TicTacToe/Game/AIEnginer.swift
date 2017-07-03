@@ -13,39 +13,40 @@ class AIEnginer {
     
     func predictNextPosition(forPlayer player: Player, inBoard board: Board, withOpponent opponent: Player,completion : @escaping ( BoardPoint ) -> Void ) {
         
-        
-        let mainNode = Node(board: board, player: player)
-        
-        // Configure nodes
-        self.configureChilds(from: mainNode, player: player, opponent: opponent)
-        
-//        minimax(node: mainNode)
-        
-        var max: Int?
-        var options: [Node] = [];	// array das opções de jogadas
-
-        // avalia qual a melhor opção de jogada, dentre as possíveis (filhos do estado atual)
-        for node in mainNode.childs {
-            if let _ = node.minimax, (max == nil || node.minimax! > max!)  {
-                max = node.minimax! // salva maior valor minimax dos filhos
+        DispatchQueue.global(qos: .background).async {
+            let mainNode = Node(board: board, player: player)
+            
+            // Configure nodes
+            self.configureChilds(from: mainNode, player: player, opponent: opponent)
+            
+            
+            var max: Int?
+            var options: [Node] = [];	// array das opções de jogadas
+            
+            // avalia qual a melhor opção de jogada, dentre as possíveis (filhos do estado atual)
+            for node in mainNode.childs {
+                if let _ = node.minimax, (max == nil || node.minimax! > max!)  {
+                    max = node.minimax! // salva maior valor minimax dos filhos
+                }
             }
-        }
-        
-        // percorre novamente os filhos, checando todos que tenham o mesmo valor minimax ótimo
-        for node in mainNode.childs {
-            if (node.minimax == max) {
-                options.append(node) // coloca índice deste filho no array de opções de jogada
+            
+            // percorre novamente os filhos, checando todos que tenham o mesmo valor minimax ótimo
+            for node in mainNode.childs {
+                if (node.minimax == max) {
+                    options.append(node) // coloca índice deste filho no array de opções de jogada
+                }
             }
-        }
-        
-        // e escolhe aleatoriamente um deles, para dar mais variedade às jogadas
-        let randomIndex = Int(arc4random_uniform(UInt32(options.count)))
-        guard let point = options[randomIndex].point else {
-            return
-        }
-        
-        DispatchQueue.main.async {
-            completion(point)
+            
+            // e escolhe aleatoriamente um deles, para dar mais variedade às jogadas
+            let randomIndex = Int(arc4random_uniform(UInt32(options.count)))
+            guard let point = options[randomIndex].point else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                completion(point)
+            }
+            
         }
         
 //        DispatchQueue.global(qos: .background).async {
