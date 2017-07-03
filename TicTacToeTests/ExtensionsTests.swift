@@ -67,25 +67,25 @@ class ExtensionsTests: XCTestCase {
         XCTAssertTrue(board1.column == 1 && board1.row == 0, "Board is comlum:\(board1.column); row: \(board1.row)")
 
         let board2 = BoardPoint.make(from: indexPaths2)
-        XCTAssertTrue(board2.column == 0 && board2.row == 0, "Board is comlum:\(board2.column); row: \(board2.row)")
+        XCTAssertTrue(board2.column == 2 && board2.row == 0, "Board is comlum:\(board2.column); row: \(board2.row)")
 
         let board3 = BoardPoint.make(from: indexPaths3)
-        XCTAssertTrue(board3.column == 0 && board3.row == 0, "Board is comlum:\(board3.column); row: \(board3.row)")
+        XCTAssertTrue(board3.column == 0 && board3.row == 1, "Board is comlum:\(board3.column); row: \(board3.row)")
 
         let board4 = BoardPoint.make(from: indexPaths4)
-        XCTAssertTrue(board4.column == 0 && board4.row == 0, "Board is comlum:\(board4.column); row: \(board4.row)")
+        XCTAssertTrue(board4.column == 1 && board4.row == 1, "Board is comlum:\(board4.column); row: \(board4.row)")
 
         let board5 = BoardPoint.make(from: indexPaths5)
-        XCTAssertTrue(board5.column == 0 && board5.row == 0, "Board is comlum:\(board5.column); row: \(board5.row)")
+        XCTAssertTrue(board5.column == 2 && board5.row == 1, "Board is comlum:\(board5.column); row: \(board5.row)")
 
         let board6 = BoardPoint.make(from: indexPaths6)
-        XCTAssertTrue(board6.column == 0 && board6.row == 0, "Board is comlum:\(board6.column); row: \(board6.row)")
+        XCTAssertTrue(board6.column == 0 && board6.row == 2, "Board is comlum:\(board6.column); row: \(board6.row)")
 
         let board7 = BoardPoint.make(from: indexPaths7)
-        XCTAssertTrue(board7.column == 0 && board7.row == 0, "Board is comlum:\(board7.column); row: \(board7.row)")
+        XCTAssertTrue(board7.column == 1 && board7.row == 2, "Board is comlum:\(board7.column); row: \(board7.row)")
 
         let board8 = BoardPoint.make(from: indexPaths8)
-        XCTAssertTrue(board8.column == 0 && board8.row == 0, "Board is comlum:\(board8.column); row: \(board8.row)")
+        XCTAssertTrue(board8.column == 2 && board8.row == 2, "Board is comlum:\(board8.column); row: \(board8.row)")
 
     }
     
