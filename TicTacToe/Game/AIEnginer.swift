@@ -48,25 +48,6 @@ class AIEnginer {
             }
             
         }
-        
-//        DispatchQueue.global(qos: .background).async {
-//            
-//            let mainNode = Node(procedure: .max, board: board, player: player)
-//            
-//            // Configure nodes
-//            self.configureChildNodes(from: mainNode, player: player, opponent: opponent)
-//            
-//            // Check best node
-//            let bestNode = self.getBestScore(procedure: .max, from: mainNode.nodes, player: player, opponent: opponent)
-//            
-//            guard let point = bestNode.point else {
-//                return
-//            }
-//            
-//            DispatchQueue.main.async {
-//                completion(point)
-//            }
-//        }
     }
     
     fileprivate func configureChilds(from node: Node, player: Player, opponent: Player) {
@@ -110,78 +91,7 @@ class AIEnginer {
             configureChilds(from: childNode, player: player, opponent: opponent)
         }
     }
-    
-//    fileprivate func configureChildNodes(from node: Node, player: Player, opponent: Player) {
-//        
-//        var boardCopy = node.board
-//        let procedure = node.procedure.toggle()
-//        let nextPlayer = procedure == .min ? player : opponent
-//
-//        for point in boardCopy.emptyPoints() {
-//
-//            let childNode = Node(procedure: procedure, board: boardCopy, player: nextPlayer)
-//            childNode.setStep(point: point, player: nextPlayer)
-//            node.nodes.append(childNode)
-//            
-//            guard !node.anyVictory(player: player, opponent: opponent) else {
-//                return
-//            }
-//            
-//            guard !node.completed() else {
-//                return
-//            }
-//            
-//            configureChildNodes(from: childNode, player: player, opponent: opponent)
-//        }
-//    }
-    
-//    fileprivate func getBestScore(procedure: ProcedureType, from nodes: [Node], player: Player, opponent: Player) -> Node {
-//        
-//        var best: Node! // node.first!
-//        for node in nodes {
-//            if best == nil { // first
-//                best = node
-//            }
-//            
-//            node.minimax = miniMaxValue(procedure: procedure, from: node.nodes, player: player, opponent: opponent)
-//            
-//            if procedure == .max, node.minimax > best.minimax {
-//                best = node
-//            } else if procedure == .min, node.minimax < best.minimax {
-//                best = node
-//            }
-//        }
-//        
-//        return best
-//    }
-    
-//    fileprivate func miniMaxValue(procedure: ProcedureType, from nodes: [Node], player: Player, opponent: Player) -> Int {
-//        
-//        var value = 0
-//        
-//        for node in nodes {
-//            if node.nodes.count > 0 {
-//                value = miniMaxValue(procedure: procedure.toggle(), from: node.nodes, player: player, opponent: opponent)
-//            } else {
-//                // TODO: - Refatorar.. juntar if's interno
-//                if procedure == .max {
-//                    if node.manager.checkVictory(from: player) {
-//                        value = 1
-//                    }
-//                } else if procedure == .min {
-//                    if node.manager.checkVictory(from: opponent) {
-//                        value = -1
-//                    }
-//                }
-//            }
-//        }
-//        
-//        if value == 0 {
-//            print("Deu ruim")
-//        }
-//        
-//        return value
-//    }
+
     
     fileprivate func minimax(node: Node) {	// calcula o valor minimax de um nodo
         var min, max: Int?
