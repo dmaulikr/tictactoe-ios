@@ -19,6 +19,7 @@
 		0323BCDA1F09331800013EB0 /* BoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323BCD91F09331800013EB0 /* BoardCell.swift */; };
 		0323BCE11F093B5200013EB0 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323BCDF1F093B5200013EB0 /* GameManager.swift */; };
 		0323BCE21F093B5200013EB0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323BCE01F093B5200013EB0 /* Player.swift */; };
+		0367AD6D1F0A7BE70017F437 /* GameManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0367AD6C1F0A7BE70017F437 /* GameManagerTests.swift */; };
 		03771E291F09A32E00E46588 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03771E271F09A32E00E46588 /* Extensions.swift */; };
 		03771E2A1F09A32E00E46588 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03771E281F09A32E00E46588 /* Protocols.swift */; };
 		03771E2C1F09A49F00E46588 /* AIEnginer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03771E2B1F09A49F00E46588 /* AIEnginer.swift */; };
@@ -61,6 +62,7 @@
 		0323BCD91F09331800013EB0 /* BoardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardCell.swift; sourceTree = "<group>"; };
 		0323BCDF1F093B5200013EB0 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		0323BCE01F093B5200013EB0 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		0367AD6C1F0A7BE70017F437 /* GameManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManagerTests.swift; sourceTree = "<group>"; };
 		03771E271F09A32E00E46588 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		03771E281F09A32E00E46588 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		03771E2B1F09A49F00E46588 /* AIEnginer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIEnginer.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				0323BCBD1F09274300013EB0 /* TicTacToeTests.swift */,
 				03771E2D1F0A5DC800E46588 /* ExtensionsTests.swift */,
+				0367AD6C1F0A7BE70017F437 /* GameManagerTests.swift */,
 				0323BCBF1F09274300013EB0 /* Info.plist */,
 			);
 			path = TicTacToeTests;
@@ -331,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0323BCBE1F09274300013EB0 /* TicTacToeTests.swift in Sources */,
+				0367AD6D1F0A7BE70017F437 /* GameManagerTests.swift in Sources */,
 				03771E2E1F0A5DC800E46588 /* ExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
