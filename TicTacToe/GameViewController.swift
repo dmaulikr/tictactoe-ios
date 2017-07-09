@@ -69,7 +69,7 @@ extension GameBoardViewController: GameManagerDelegate {
         if !board.isFull() && player != machine {
             self.collectionView?.isUserInteractionEnabled = false
             self.activityView?.startAnimating()
-            AIEnginer().predictNextPosition(forPlayer: player, inBoard: board, withOpponent: human, completion: { (point) in
+            AIEngine().predictNextPosition(forPlayer: player, inBoard: board, withOpponent: human, completion: { (point) in
                 self.collectionView?.isUserInteractionEnabled = true
                 self.activityView?.stopAnimating()
                 manager.select(point: point, from: self.machine)

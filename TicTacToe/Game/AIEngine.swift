@@ -9,7 +9,7 @@
 import Foundation
 
 
-class AIEnginer {
+class AIEngine {
     
     func predictNextPosition(forPlayer player: Player, inBoard board: Board, withOpponent opponent: Player,completion : @escaping ( BoardPoint ) -> Void ) {
         
@@ -25,6 +25,7 @@ class AIEnginer {
             
             // avalia qual a melhor opção de jogada, dentre as possíveis (filhos do estado atual)
             for node in mainNode.childs {
+                self.minimax(node: node)
                 if let _ = node.minimax, (max == nil || node.minimax! > max!)  {
                     max = node.minimax! // salva maior valor minimax dos filhos
                 }
@@ -53,8 +54,6 @@ class AIEnginer {
     fileprivate func configureChilds(from node: Node, player: Player, opponent: Player) {
         
         var _board = node.board // gera uma cópia do estado atual
-//        let	player = (node.player == player) ? opponent : player; // verifica de quem é a vez de jogar nesse nível
-//        let opponent = (node.player == player) ? player : opponent
 
         for point in _board.emptyPoints() {
             
@@ -64,25 +63,13 @@ class AIEnginer {
             node.childs.append(childNode)
             
             guard !childNode.anyVictory(player: player, opponent: opponent) else {
-                if childNode.manager.checkVictory(from: childNode.player) && childNode.player.identifier.uppercased() == "O" {
-                    childNode.minimax = +1;		// se a próxima jogada é da CPU, retorna valor max
-                } else if  childNode.manager.checkVictory(from: opponent) {
-                    childNode.minimax = -1;		// caso contrário, retorna valor min
-                } else {
-                    childNode.minimax = 0
-                }
-                break
+                setMinimax(to: childNode, opponent: opponent)
+                continue
             }
             
             guard !childNode.completed() else {
-                if childNode.manager.checkVictory(from: childNode.player) && childNode.player.identifier.uppercased() == "O" {
-                    childNode.minimax = +1;		// se a próxima jogada é da CPU, retorna valor max
-                } else if  childNode.manager.checkVictory(from: opponent) {
-                    childNode.minimax = -1;		// caso contrário, retorna valor min
-                } else {
-                    childNode.minimax = 0
-                }
-                break
+                setMinimax(to: childNode, opponent: opponent)
+                continue
             }
             
             let	player = (node.player == player) ? opponent : player; // verifica de quem é a vez de jogar nesse nível
@@ -92,9 +79,20 @@ class AIEnginer {
         }
     }
 
+    fileprivate func setMinimax(to node: Node, opponent: Player) {
+        if node.manager.checkVictory(from: node.player) && node.player.identifier.uppercased() == "O" {
+            node.minimax = 1;		// se a próxima jogada é da CPU, retorna valor max
+        } else if  node.manager.checkVictory(from: opponent) {
+            node.minimax = -1;		// caso contrário, retorna valor min
+        } else {
+            node.minimax = 0
+        }
+        node.depth = 1
+    }
     
     fileprivate func minimax(node: Node) {	// calcula o valor minimax de um nodo
         var min, max: Int?
+        var depth: Int = 1
         for child in node.childs {	// percorre todos os filhos do nodo
             if (child.minimax == nil) {	// se um filho ainda não tem um valor minimax (não é folha da árvore)
                 minimax(node: child) // chama a função recursivamente para aquele filho
@@ -106,12 +104,14 @@ class AIEnginer {
             if (min == nil || child.minimax! < min!) {	// guarda valor min (menor minimax entre os filhos)
                 min = child.minimax!
             }
+            depth = child.depth
         }
         if node.player.identifier.uppercased() == "O" {
             node.minimax = max;		// se a próxima jogada é da CPU, retorna valor max
         } else {
             node.minimax = min;		// caso contrário, retorna valor min
         }
+        node.depth = depth + 1
     }
     
 }
@@ -139,6 +139,8 @@ fileprivate class Node {
     //  -2 Empty
     
     var minimax: Int?
+    
+    var depth: Int = 0
     
     var player: Player
     
