@@ -65,11 +65,6 @@ class GameManager {
     func select(point: BoardPoint, from player: Player) {
         self.board.select(point: point, from: player)
         
-        defer {
-            self.lastPlayer = player
-            self.delegate?.gameManager(self, didSelected: point, from: player)
-        }
-        
         // 1.) Verificar vencedor
         if checkVictory(from: player) {
             self.delegate?.gameManager(self, finishedWith: GameResult.victory(player))
@@ -79,7 +74,11 @@ class GameManager {
         // 2.) Verificar fim do jogo (board full)
         if board.isFull() {
             self.delegate?.gameManager(self, finishedWith: .tie)
+            return
         }
+        
+        self.lastPlayer = player
+        self.delegate?.gameManager(self, didSelected: point, from: player)
     }
     
     func checkVictory(from player: Player) -> Bool {

@@ -26,7 +26,7 @@ class AIEngine {
             // avalia qual a melhor opção de jogada, dentre as possíveis (filhos do estado atual)
             for node in mainNode.childs {
                 self.minimax(node: node)
-                if let _ = node.minimax, (max == nil || node.minimax! > max!)  {
+                if let nodeMinimax = node.minimax, (max == nil || nodeMinimax > max!)  {
                     max = node.minimax! // salva maior valor minimax dos filhos
                 }
             }
@@ -38,9 +38,13 @@ class AIEngine {
                 }
             }
             
+            let sorted = mainNode.childs.sorted(by: { (node1, node2) -> Bool in
+                return node1.depth < node2.depth
+            })
+            
             // e escolhe aleatoriamente um deles, para dar mais variedade às jogadas
             let randomIndex = Int(arc4random_uniform(UInt32(options.count)))
-            guard let point = options[randomIndex].point else {
+            guard let point = sorted.first?.point /*options[randomIndex].point*/ else {
                 return
             }
             
@@ -64,18 +68,18 @@ class AIEngine {
             
             guard !childNode.anyVictory(player: player, opponent: opponent) else {
                 setMinimax(to: childNode, opponent: opponent)
-                continue
+                break
             }
             
             guard !childNode.completed() else {
                 setMinimax(to: childNode, opponent: opponent)
-                continue
+                break
             }
             
-            let	player = (node.player == player) ? opponent : player; // verifica de quem é a vez de jogar nesse nível
-            let opponent = (node.player == player) ? player : opponent
+            let	nextPlayer = (node.player == player) ? opponent : player // verifica de quem é a vez de jogar nesse nível
+            let nextOpponent = (node.player == player) ? player : opponent
 
-            configureChilds(from: childNode, player: player, opponent: opponent)
+            configureChilds(from: childNode, player: nextPlayer, opponent: nextOpponent)
         }
     }
 
@@ -106,6 +110,7 @@ class AIEngine {
             }
             depth = child.depth
         }
+        
         if node.player.identifier.uppercased() == "O" {
             node.minimax = max;		// se a próxima jogada é da CPU, retorna valor max
         } else {

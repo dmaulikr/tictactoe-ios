@@ -64,11 +64,11 @@ extension GameBoardViewController: GameManagerDelegate {
         let items = [IndexPath.make(from: point)]
         self.collectionView?.reloadItems(at: items)
         
-        
         var board = manager.board
         if !board.isFull() && player != machine {
             self.collectionView?.isUserInteractionEnabled = false
             self.activityView?.startAnimating()
+            
             AIEngine().predictNextPosition(forPlayer: player, inBoard: board, withOpponent: human, completion: { (point) in
                 self.collectionView?.isUserInteractionEnabled = true
                 self.activityView?.stopAnimating()
